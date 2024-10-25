@@ -1,6 +1,6 @@
 To add a new disk to a Docker host that has run out of space, mount the disk to the Docker directory (/var/lib/docker) and migrate existing data as follows:
 
-1)create a temporary mount /mnt/docker-container
+1)create a temporary mount /mnt/docker-container \
 2)create/ format the new ebs as sudo mkfs -t ext4 /dev/nvme1n1
 3)now mount this file system /dev/nvme1n1 to created mountpoint /mnt/docker-container
 4)stop the docker service
