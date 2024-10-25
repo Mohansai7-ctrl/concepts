@@ -2,7 +2,8 @@ To add a new disk to a Docker host that has run out of space, mount the disk to 
 
 
 Steps to Mount a New Disk to /var/lib/docker and Migrate Data:
-1.Add and Prepare the New Disk:
+
+1-a.Add and Prepare the New Disk:
 
 Attach the new disk to the Docker host. On a cloud provider, follow their specific steps for attaching additional storage.
 Identify the new disk using the lsblk or fdisk -l command. The new disk should appear as something like /dev/sdb or /dev/xvdf.
@@ -12,7 +13,7 @@ Create a partition and format it, for example, as ext4:
 sudo mkfs.ext4 /dev/sdb
 ```
 
-Mount the Disk:
+1-b.Mount the Disk:
 
 Create a temporary mount point:
 ```
