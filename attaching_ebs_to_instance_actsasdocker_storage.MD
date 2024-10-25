@@ -12,7 +12,7 @@ sudo umount /mnt/docker-container \
 7)rename the /var/lib/docker in root volume to /var/lib/docker.old \
 8)also create another /var/lib/docker in root volume ec2-user \
 9)Now, update the /etc/fstab :
-echo '/dev/sdb /var/lib/docker ext4 defaults 0 2' | sudo tee -a /etc/fstab \
+echo '/dev/nvme1n1 /var/lib/docker ext4 defaults 0 2' | sudo tee -a /etc/fstab \
 10)update the mount now so that the filesystem /dev/nvme1n1 with /var/lib/docker which is in ebs volume now
 sudo mount -a \
 11)can delete old file existing data ---> /var/lib/docker.old
