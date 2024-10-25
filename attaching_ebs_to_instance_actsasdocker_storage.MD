@@ -1,19 +1,19 @@
 To add a new disk to a Docker host that has run out of space, mount the disk to the Docker directory (/var/lib/docker) and migrate existing data as follows:
 
 1)create a temporary mount /mnt/docker-container \
-2)create/ format the new ebs as sudo mkfs -t ext4 /dev/nvme1n1
-3)now mount this file system /dev/nvme1n1 to created mountpoint /mnt/docker-container
-4)stop the docker service
-5)now transfer the /var/lib/docker --in root volume to created mountpoint /mnt/docker-container:
-sudo rsync -aHAX /var/lib/docker /mnt/docker-container
+2)create format the new ebs as sudo mkfs -t ext4 /dev/nvme1n1 \
+3)now mount this file system /dev/nvme1n1 to created mountpoint /mnt/docker-container \
+4)stop the docker service \
+5)now transfer the /var/lib/docker --in root volume to created mountpoint /mnt/docker-container: 
+sudo rsync -aHAX /var/lib/docker /mnt/docker-container \
 6)once the existing docker data is transfered, now unmount this with file system:
-sudo umount /mnt/docker-container
-7)rename the /var/lib/docker in root volume to /var/lib/docker.old
-8)also create another /var/lib/docker in root volume ec2-user
+sudo umount /mnt/docker-container \
+7)rename the /var/lib/docker in root volume to /var/lib/docker.old \
+8)also create another /var/lib/docker in root volume ec2-user \
 9)Now, update the /etc/fstab :
-echo '/dev/sdb /var/lib/docker ext4 defaults 0 2' | sudo tee -a /etc/fstab
+echo '/dev/sdb /var/lib/docker ext4 defaults 0 2' | sudo tee -a /etc/fstab \
 10)update the mount now so that the filesystem /dev/nvme1n1 with /var/lib/docker which is in ebs volume now
-sudo mount -a
+sudo mount -a \
 11)can delete old file existing data ---> /var/lib/docker.old
 now check using lsblk ---> /dev/nvme1n1 with /var/lib/docker(it is in root volume but mounted with ebs storage)
 
