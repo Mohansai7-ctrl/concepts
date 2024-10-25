@@ -11,6 +11,7 @@ Create a partition and format it, for example, as ext4:
 
 ```
 sudo mkfs.ext4 /dev/sdb
+sudo mkfs -t ext4 /dev/nvme1n1
 ```
 
 1-b) Mount the Disk:
